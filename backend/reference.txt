@@ -1,0 +1,4 @@
+https://velog.io/@edwinstory/pythonflask01
+https://velog.io/@wody/Flask-Tutorial
+https://www.delftstack.com/ko/howto/mysql/store-image-in-mysql/
+https://minha0220.tistory.com/75
