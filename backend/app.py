@@ -43,7 +43,7 @@ def send_image(file_path):
 
 #include text info
 def get_db_connection():
-    product_info_db = pymysql.connect(host = '127.0.0.1',user='root',password='Detective@spes31',database='flask_test',charset='utf8')
+    product_info_db = pymysql.connect('mysql db정보를 입력한다. 이 프로젝트 이후 db정보가 바뀌어서 이 메세지로 대체함')
     return product_info_db
 
     #cursor.execution() : parameter로 받은 sql쿼리를 실행함.
@@ -111,16 +111,7 @@ def upload_file():
     file_name  = file.filename
     #module here
 
-    #모듈에서 사진을 전송받음. 서버 컴퓨터 로컬 폴더에 저장한 후, 이미지 경로를 파라미터로 보냄.
-    #서버 노트북에서 모듈을 import혹은 py파일을 실행시켜서 결과값을 얻어옴.
-    #가능하면 ID정보를 얻어옴.
-    #얻어온 ID정보를 클라이언트에게 보냄.
-    #클라이언트에서 /ID=n 을 이용해서 상품정보 요청.
-    #만일 인식 실패의 경우. ID를 -1로 가져옴. -1이면 인식실패가 뜨도록 클라이언트에서 작업.
 
-    #만일 인식에 성공해서 ID를 보내야한다면 이 정보를 History ID에 맞춰서 정리하자.
-    #History에는 ID와 이어진 제품 정보 (이름, 가격, 행사정보) 가 저장된다.
-    #History ID는 primary key로 중복 불가임. 
 
     
 
