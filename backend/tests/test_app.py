@@ -1,22 +1,25 @@
+# tests/test_app.py
 import unittest
 from unittest.mock import patch, MagicMock
-from your_module import app   # 실제 Flask app import
+from app import app
 
-class ProductInfoTestCase(unittest.TestCase):
+
+class TestProductInfoAPI(unittest.TestCase):
     def setUp(self):
-        self.app = app.test_client()
+        self.client = app.test_client()
 
-    @patch('your_module.get_db_connection')
-    def test_get_product_info_success(self, mock_db_conn):
-        # 커서와 DB 모킹
+    @patch('app.get_db_connection')
+    def test_get_product_info_success(self, mock_get_db_connection):
+        # DB 커서 mocking
         mock_cursor = MagicMock()
-        mock_cursor.fetchone.return_value = ('테스트제품', 10000, '10% 할인')
-        
-        mock_db = MagicMock()
-        mock_db.cursor.return_value = mock_cursor
-        mock_db.__enter__.return_value = mock_db
-        mock_db_conn.return_value = mock_db
+        mock_cursor.fetchone.return_value = ('Test Product', 10000, '10% 할인')
 
-        response = self.app.get('/ID=1')
+        # DB 연결 mocking
+        mock_conn = MagicMock()
+        mock_conn.cursor.return_value = mock_cursor
+        mock_conn.__enter__.return_value = mock_conn
+        mock_get_db_connection.return_value = mock_conn
+
+        response = self.client.get('/ID=1')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'"Name": "\xec\xa0\x9c\xed\x92\x88', response.data)
+        self.assertIn(b'Test Product', response.data)
